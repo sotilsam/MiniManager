@@ -111,17 +111,17 @@ export default function EmployeesAtHome() {
                             <th className="px-1 md:px-6 py-3 md:py-4 font-semibold tracking-wider text-center md:text-left">Name</th>
                             <th className="px-1 md:px-6 py-3 md:py-4 font-semibold tracking-wider text-center md:text-left"><span className="md:hidden">Start</span><span className="hidden md:inline">Stay Start Date</span></th>
                             <th className="px-1 md:px-6 py-3 md:py-4 font-semibold tracking-wider text-center md:text-left">Days</th>
-                            <th className="px-1 md:px-6 py-3 md:py-4 font-semibold tracking-wider text-center md:text-right">Acts</th>
+                            <th className="px-1 md:px-6 py-3 md:py-4 font-semibold tracking-wider text-center md:text-right">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {(isAdding || employees.length === 0) && isAdding && (
                             <tr className="bg-white border-b border-slate-200 shadow-sm relative z-0">
                                 <td className="px-1 md:px-4 py-2 md:py-3 min-w-[70px] md:min-w-[150px]">
-                                    <input type="text" className="w-full border-slate-200 rounded-md text-[10px] md:text-sm p-1.5 md:p-2 focus:ring-2 focus:ring-indigo-500 border focus:outline-none transition-shadow" placeholder="Employee Name" value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} />
+                                    <input type="text" className="w-[96%] mx-auto block border-slate-200 rounded-md text-[10px] md:text-sm p-1.5 md:p-2 focus:ring-2 focus:ring-indigo-500 border focus:outline-none transition-shadow" placeholder="Name" value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} />
                                 </td>
                                 <td className="px-1 md:px-4 py-2 md:py-3 min-w-[90px] md:min-w-[140px]">
-                                    <input type="date" className="w-full border-slate-200 rounded-md text-[10px] md:text-sm p-1.5 md:p-2 focus:ring-2 focus:ring-indigo-500 border focus:outline-none transition-shadow" value={formData.startDate} onChange={e => setFormData({ ...formData, startDate: e.target.value })} />
+                                    <input type="date" className="w-[96%] mx-auto block border-slate-200 rounded-md text-[10px] md:text-sm p-1.5 md:p-2 focus:ring-2 focus:ring-indigo-500 border focus:outline-none transition-shadow" value={formData.startDate} onChange={e => setFormData({ ...formData, startDate: e.target.value })} />
                                 </td>
                                 <td className="px-1 md:px-6 py-2 md:py-3 text-slate-400 font-medium text-center">-</td>
                                 <td className="px-1 md:px-4 py-2 md:py-3 text-right">
@@ -139,8 +139,8 @@ export default function EmployeesAtHome() {
                             if (isEditing) {
                                 return (
                                     <tr key={emp.id} className="bg-indigo-50/50 border-b border-indigo-100">
-                                        <td className="px-1 md:px-4 py-2 md:py-3 min-w-[70px] md:min-w-[150px]"><input type="text" className="w-full border-indigo-200 rounded-md text-[10px] md:text-sm p-1.5 md:p-2 focus:ring-2 focus:ring-indigo-500 border focus:outline-none" value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} /></td>
-                                        <td className="px-1 md:px-4 py-2 md:py-3 min-w-[90px] md:min-w-[140px]"><input type="date" className="w-full border-indigo-200 rounded-md text-[10px] md:text-sm p-1.5 md:p-2 focus:ring-2 focus:ring-indigo-500 border focus:outline-none" value={formData.startDate} onChange={e => setFormData({ ...formData, startDate: e.target.value })} /></td>
+                                        <td className="px-1 md:px-4 py-2 md:py-3 min-w-[70px] md:min-w-[150px]"><input type="text" className="w-[96%] mx-auto block border-indigo-200 rounded-md text-[10px] md:text-sm p-1.5 md:p-2 focus:ring-2 focus:ring-indigo-500 border focus:outline-none" value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} /></td>
+                                        <td className="px-1 md:px-4 py-2 md:py-3 min-w-[90px] md:min-w-[140px]"><input type="date" className="w-[96%] mx-auto block border-indigo-200 rounded-md text-[10px] md:text-sm p-1.5 md:p-2 focus:ring-2 focus:ring-indigo-500 border focus:outline-none" value={formData.startDate} onChange={e => setFormData({ ...formData, startDate: e.target.value })} /></td>
                                         <td className="px-1 md:px-6 py-2 md:py-3 text-indigo-800 font-medium text-center">{daysAtHome}</td>
                                         <td className="px-1 md:px-4 py-2 md:py-3 text-right">
                                             <div className="flex justify-center md:justify-end gap-0.5 md:gap-2">
