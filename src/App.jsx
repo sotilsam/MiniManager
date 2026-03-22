@@ -4,6 +4,7 @@ import EmployeesAtHome from './components/EmployeesAtHome';
 import SystemCertifications from './components/SystemCertifications';
 import { db } from './firebase';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { ChevronDown } from 'lucide-react';
 
 function App() {
     const [currentPage, setCurrentPage] = useState('dashboard');
@@ -14,11 +15,11 @@ function App() {
     const textareaRef = useRef(null);
 
     useEffect(() => {
-        if (textareaRef.current) {
+        if (textareaRef.current && currentPage === '1') {
             textareaRef.current.style.height = 'auto';
             textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px';
         }
-    }, [noteText]);
+    }, [noteText, currentPage]);
 
     const handleCopy = () => {
         navigator.clipboard.writeText(noteText);
@@ -143,12 +144,26 @@ function App() {
                                         {saveStatus === 'Saved' && <span className="text-green-500"> saved successfully ✓</span>}
                                         {saveStatus === 'Error saving' && <span className="text-red-500">saving error</span>}
                                     </div>
-                                    <button
-                                        onClick={handleCopy}
-                                        className="text-xs font-semibold px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg transition-colors flex items-center gap-1 active:scale-95"
-                                    >
-                                        {copied ? 'Copied ✓' : 'Copy All'}
-                                    </button>
+                                    <div className="flex gap-2">
+                                        <button
+                                            onClick={() => {
+                                                if (textareaRef.current) {
+                                                    textareaRef.current.style.height = 'auto';
+                                                    textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px';
+                                                }
+                                            }}
+                                            className="text-xs font-semibold px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg transition-colors flex items-center gap-1 active:scale-95"
+                                            title="Expand text box"
+                                        >
+                                            <ChevronDown className="w-3.5 h-3.5" />
+                                        </button>
+                                        <button
+                                            onClick={handleCopy}
+                                            className="text-xs font-semibold px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg transition-colors flex items-center gap-1 active:scale-95"
+                                        >
+                                            {copied ? 'Copied ✓' : 'Copy All'}
+                                        </button>
+                                    </div>
                                 </div>
                                 <textarea
                                     dir="rtl"
