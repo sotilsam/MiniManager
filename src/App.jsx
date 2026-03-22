@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ActiveTasks from './components/ActiveTasks';
 import EmployeesAtHome from './components/EmployeesAtHome';
 import SystemCertifications from './components/SystemCertifications';
@@ -11,6 +11,14 @@ function App() {
     const [saveStatus, setSaveStatus] = useState('');
     const [isLoaded, setIsLoaded] = useState(false);
     const [copied, setCopied] = useState(false);
+    const textareaRef = useRef(null);
+
+    useEffect(() => {
+        if (textareaRef.current) {
+            textareaRef.current.style.height = 'auto';
+            textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px';
+        }
+    }, [noteText]);
 
     const handleCopy = () => {
         navigator.clipboard.writeText(noteText);
@@ -55,10 +63,6 @@ function App() {
     const handleNoteChange = (e) => {
         setNoteText(e.target.value);
         setSaveStatus('Typing...');
-
-        // Auto-expand textarea
-        e.target.style.height = 'auto';
-        e.target.style.height = e.target.scrollHeight + 'px';
     };
 
     return (
@@ -133,7 +137,7 @@ function App() {
                     {currentPage === '1' && (
                         <div className="flex flex-col items-center justify-center min-h-[60vh]">
                             <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-200 w-full max-w-2xl">
-                                <div className="flex justify-between items-center mb-4">
+                                <div className="flex justify-between items-center mb-4 flex-row-reverse">
                                     <div className="text-sm text-slate-400 font-medium">
                                         {saveStatus === 'Saving...' && <span className="text-blue-500">saving...</span>}
                                         {saveStatus === 'Saved' && <span className="text-green-500"> saved successfully ✓</span>}
@@ -152,6 +156,7 @@ function App() {
                                     placeholder="..."
                                     value={noteText}
                                     onChange={handleNoteChange}
+                                    ref={textareaRef}
                                     disabled={!isLoaded}
                                     className="w-full min-h-[250px] p-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none resize-y text-lg text-slate-800 transition-shadow disabled:opacity-50"
                                 ></textarea>

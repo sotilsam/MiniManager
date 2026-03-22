@@ -115,33 +115,36 @@ export default function ActiveTasks() {
                 </button>
             </div>
 
-            <div className="flex-1 overflow-x-auto bg-slate-50/50 rounded-b-2xl">
-                <table className="w-full text-sm text-left">
-                    <thead className="text-xs text-slate-500 uppercase bg-slate-100/80 sticky top-0 border-b border-slate-200 shadow-sm z-10">
+            <div className="flex-1 overflow-hidden bg-slate-50/50 rounded-b-2xl">
+                <table className="w-full text-sm text-left block md:table">
+                    <thead className="hidden md:table-header-group text-xs text-slate-500 uppercase bg-slate-100/80 sticky top-0 border-b border-slate-200 shadow-sm z-10">
                         <tr>
-                            <th className="px-3 py-3 md:px-6 md:py-4 font-semibold tracking-wider text-xs md:text-sm">Name</th>
-                            <th className="px-3 py-3 md:px-6 md:py-4 font-semibold tracking-wider text-xs md:text-sm">Arrival Date</th>
-                            <th className="px-3 py-3 md:px-6 md:py-4 font-semibold tracking-wider text-xs md:text-sm">Task Date</th>
-                            <th className="px-3 py-3 md:px-6 md:py-4 font-semibold tracking-wider text-xs md:text-sm">Days Active</th>
-                            <th className="px-3 py-3 md:px-6 md:py-4 font-semibold tracking-wider text-xs md:text-sm text-right">Actions</th>
+                            <th className="px-6 py-4 font-semibold tracking-wider text-sm">Name</th>
+                            <th className="px-6 py-4 font-semibold tracking-wider text-sm">Arrival Date</th>
+                            <th className="px-6 py-4 font-semibold tracking-wider text-sm">Task Date</th>
+                            <th className="px-6 py-4 font-semibold tracking-wider text-sm">Days Active</th>
+                            <th className="px-6 py-4 font-semibold tracking-wider text-sm text-right">Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="block md:table-row-group">
                         {(isAdding || tasks.length === 0) && isAdding && (
-                            <tr className="bg-white border-b border-slate-200 shadow-sm relative z-0">
-                                <td className="px-4 py-3 min-w-[150px]">
+                            <tr className="block md:table-row bg-white border-b border-slate-200 shadow-sm relative z-0 p-4 md:p-0">
+                                <td className="block md:table-cell px-2 py-2 md:px-4 md:py-3">
+                                    <div className="md:hidden text-xs font-bold text-slate-400 mb-1 uppercase tracking-wider">Name</div>
                                     <input type="text" className="w-full border-slate-200 rounded-md text-sm p-2 focus:ring-2 focus:ring-blue-500 border focus:outline-none transition-shadow" placeholder="Employee Name" value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} />
                                 </td>
-                                <td className="px-4 py-3 min-w-[140px]">
+                                <td className="block md:table-cell px-2 py-2 md:px-4 md:py-3">
+                                    <div className="md:hidden text-xs font-bold text-slate-400 mb-1 uppercase tracking-wider">Arrival Date</div>
                                     <input type="date" className="w-full border-slate-200 rounded-md text-sm p-2 focus:ring-2 focus:ring-blue-500 border focus:outline-none transition-shadow" value={formData.arrivalDate} onChange={e => setFormData({ ...formData, arrivalDate: e.target.value })} />
                                 </td>
-                                <td className="px-4 py-3 min-w-[140px]">
+                                <td className="block md:table-cell px-2 py-2 md:px-4 md:py-3">
+                                    <div className="md:hidden text-xs font-bold text-slate-400 mb-1 uppercase tracking-wider">Task Date</div>
                                     <input type="date" className="w-full border-slate-200 rounded-md text-sm p-2 focus:ring-2 focus:ring-blue-500 border focus:outline-none transition-shadow" value={formData.taskDate} onChange={e => setFormData({ ...formData, taskDate: e.target.value })} />
                                 </td>
-                                <td className="px-6 py-3 text-slate-400 font-medium">-</td>
-                                <td className="px-4 py-3 text-right">
+                                <td className="hidden md:table-cell px-6 py-3 text-slate-400 font-medium">-</td>
+                                <td className="block md:table-cell px-2 py-3 md:px-4 md:py-3 text-right">
                                     <div className="flex justify-end gap-2">
-                                        <button onClick={handleAdd} className="flex items-center justify-center bg-green-100 text-green-700 hover:bg-green-200 p-2 rounded-md transition-colors w-8 h-8"><Save className="w-4 h-4" /></button>
+                                        <button onClick={handleAdd} className="flex items-center justify-center bg-green-100 text-green-700 hover:bg-green-200 p-2 rounded-md transition-colors w-full md:w-8 h-10 md:h-8 font-semibold md:font-normal"><Save className="w-5 h-5 md:w-4 md:h-4 mr-2 md:mr-0" /> <span className="md:hidden">Save Task</span></button>
                                     </div>
                                 </td>
                             </tr>
@@ -153,15 +156,24 @@ export default function ActiveTasks() {
 
                             if (isEditing) {
                                 return (
-                                    <tr key={task.id} className="bg-blue-50/50 border-b border-blue-100">
-                                        <td className="px-4 py-3 min-w-[150px]"><input type="text" className="w-full border-blue-200 rounded-md text-sm p-2 focus:ring-2 focus:ring-blue-500 border focus:outline-none" value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} /></td>
-                                        <td className="px-4 py-3 min-w-[140px]"><input type="date" className="w-full border-blue-200 rounded-md text-sm p-2 focus:ring-2 focus:ring-blue-500 border focus:outline-none" value={formData.arrivalDate} onChange={e => setFormData({ ...formData, arrivalDate: e.target.value })} /></td>
-                                        <td className="px-4 py-3 min-w-[140px]"><input type="date" className="w-full border-blue-200 rounded-md text-sm p-2 focus:ring-2 focus:ring-blue-500 border focus:outline-none" value={formData.taskDate} onChange={e => setFormData({ ...formData, taskDate: e.target.value })} /></td>
-                                        <td className="px-6 py-3 text-blue-800 font-medium">{daysActive}</td>
-                                        <td className="px-4 py-3 text-right">
+                                    <tr key={task.id} className="block md:table-row bg-blue-50/50 border-b border-blue-100 p-4 md:p-0">
+                                        <td className="block md:table-cell px-2 py-2 md:px-4 md:py-3">
+                                            <div className="md:hidden text-xs font-bold text-slate-400 mb-1 uppercase tracking-wider">Name</div>
+                                            <input type="text" className="w-full border-blue-200 rounded-md text-sm p-2 focus:ring-2 focus:ring-blue-500 border focus:outline-none" value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} />
+                                        </td>
+                                        <td className="block md:table-cell px-2 py-2 md:px-4 md:py-3">
+                                            <div className="md:hidden text-xs font-bold text-slate-400 mb-1 uppercase tracking-wider">Arrival Date</div>
+                                            <input type="date" className="w-full border-blue-200 rounded-md text-sm p-2 focus:ring-2 focus:ring-blue-500 border focus:outline-none" value={formData.arrivalDate} onChange={e => setFormData({ ...formData, arrivalDate: e.target.value })} />
+                                        </td>
+                                        <td className="block md:table-cell px-2 py-2 md:px-4 md:py-3">
+                                            <div className="md:hidden text-xs font-bold text-slate-400 mb-1 uppercase tracking-wider">Task Date</div>
+                                            <input type="date" className="w-full border-blue-200 rounded-md text-sm p-2 focus:ring-2 focus:ring-blue-500 border focus:outline-none" value={formData.taskDate} onChange={e => setFormData({ ...formData, taskDate: e.target.value })} />
+                                        </td>
+                                        <td className="hidden md:table-cell px-6 py-3 text-blue-800 font-medium">{daysActive}</td>
+                                        <td className="block md:table-cell px-2 py-3 md:px-4 md:py-3 text-right">
                                             <div className="flex justify-end gap-2">
-                                                <button onClick={() => handleUpdate(task.id)} className="flex items-center justify-center bg-green-100 text-green-700 hover:bg-green-200 p-2 rounded-md transition-colors w-8 h-8"><Save className="w-4 h-4" /></button>
-                                                <button onClick={() => setEditingId(null)} className="flex items-center justify-center bg-slate-200 text-slate-600 hover:bg-slate-300 p-2 rounded-md transition-colors w-8 h-8"><X className="w-4 h-4" /></button>
+                                                <button onClick={() => handleUpdate(task.id)} className="flex flex-1 md:flex-none items-center justify-center bg-green-100 text-green-700 hover:bg-green-200 p-2 rounded-md transition-colors h-10 md:h-8"><Save className="w-5 h-5 md:w-4 md:h-4 mr-1 md:mr-0" /> <span className="md:hidden font-semibold">Save</span></button>
+                                                <button onClick={() => setEditingId(null)} className="flex flex-1 md:flex-none items-center justify-center bg-slate-200 text-slate-600 hover:bg-slate-300 p-2 rounded-md transition-colors h-10 md:h-8"><X className="w-5 h-5 md:w-4 md:h-4 mr-1 md:mr-0" /> <span className="md:hidden font-semibold">Cancel</span></button>
                                             </div>
                                         </td>
                                     </tr>
@@ -169,19 +181,37 @@ export default function ActiveTasks() {
                             }
 
                             return (
-                                <tr key={task.id} className={`transition-colors ${getRowColor(daysActive)}`}>
-                                    <td className="px-3 py-3 md:px-6 md:py-4 font-semibold break-words max-w-[100px] md:max-w-none md:min-w-[150px] text-xs md:text-sm">{task.name}</td>
-                                    <td className="px-3 py-3 md:px-6 md:py-4 text-slate-700 font-medium whitespace-nowrap text-xs md:text-sm">{task.arrivalDate}</td>
-                                    <td className="px-3 py-3 md:px-6 md:py-4 text-slate-700 font-medium whitespace-nowrap text-xs md:text-sm">{task.taskDate}</td>
-                                    <td className="px-3 py-3 md:px-6 md:py-4 font-bold whitespace-nowrap">
-                                        <span className="inline-flex items-center justify-center px-2 py-1 md:px-2.5 md:py-1 rounded-full bg-white/50 text-[10px] md:text-xs shadow-sm">
-                                            {daysActive} {daysActive === 1 ? 'day' : 'days'}
-                                        </span>
+                                <tr key={task.id} className={`block md:table-row border-b md:border-b-0 border-slate-200 p-4 md:p-0 transition-colors ${getRowColor(daysActive)}`}>
+                                    <td className="block md:table-cell px-2 py-1.5 md:px-6 md:py-4">
+                                        <div className="flex justify-between items-center md:block">
+                                            <span className="md:hidden font-bold text-slate-500/80 text-[11px] uppercase tracking-wider">Name</span>
+                                            <span className="font-semibold break-words text-sm md:text-base text-right md:text-left">{task.name}</span>
+                                        </div>
                                     </td>
-                                    <td className="px-1 py-3 md:px-4 md:py-4 text-right whitespace-nowrap">
-                                        <div className="flex justify-end gap-1 md:gap-2">
-                                            <button onClick={() => startEdit(task)} className="bg-white/50 text-blue-700 hover:bg-blue-100 hover:text-blue-800 p-1.5 md:p-2 rounded-md transition-colors shadow-sm" title="Edit"><Edit2 className="w-4 h-4" /></button>
-                                            <button onClick={() => handleDelete(task.id)} className="bg-white/50 text-red-600 hover:bg-red-200 hover:text-red-700 p-1.5 md:p-2 rounded-md transition-colors shadow-sm" title="Delete"><Trash2 className="w-4 h-4" /></button>
+                                    <td className="block md:table-cell px-2 py-1.5 md:px-6 md:py-4">
+                                        <div className="flex justify-between items-center md:block">
+                                            <span className="md:hidden font-bold text-slate-500/80 text-[11px] uppercase tracking-wider">Arrival Date</span>
+                                            <span className="text-slate-700 font-medium text-sm md:text-base">{task.arrivalDate}</span>
+                                        </div>
+                                    </td>
+                                    <td className="block md:table-cell px-2 py-1.5 md:px-6 md:py-4">
+                                        <div className="flex justify-between items-center md:block">
+                                            <span className="md:hidden font-bold text-slate-500/80 text-[11px] uppercase tracking-wider">Task Date</span>
+                                            <span className="text-slate-700 font-medium text-sm md:text-base">{task.taskDate}</span>
+                                        </div>
+                                    </td>
+                                    <td className="block md:table-cell px-2 py-1.5 md:px-6 md:py-4">
+                                        <div className="flex justify-between items-center md:block">
+                                            <span className="md:hidden font-bold text-slate-500/80 text-[11px] uppercase tracking-wider">Days Active</span>
+                                            <span className="inline-flex items-center justify-center px-2.5 py-1 rounded-full bg-white/50 text-xs font-bold shadow-sm">
+                                                {daysActive} {daysActive === 1 ? 'day' : 'days'}
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td className="block md:table-cell px-2 pt-3 pb-1 mt-2 border-t border-slate-200/50 md:border-none md:mt-0 md:pt-4 md:pb-4 md:px-4 text-right">
+                                        <div className="flex justify-end gap-2 w-full md:w-auto">
+                                            <button onClick={() => startEdit(task)} className="flex-1 md:flex-none flex items-center justify-center bg-white/60 text-blue-700 hover:bg-blue-100 hover:text-blue-800 p-2 rounded-lg md:rounded-md transition-colors shadow-sm" title="Edit"><Edit2 className="w-5 h-5 md:w-4 md:h-4" /></button>
+                                            <button onClick={() => handleDelete(task.id)} className="flex-1 md:flex-none flex items-center justify-center bg-white/60 text-red-600 hover:bg-red-200 hover:text-red-700 p-2 rounded-lg md:rounded-md transition-colors shadow-sm" title="Delete"><Trash2 className="w-5 h-5 md:w-4 md:h-4" /></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -189,8 +219,8 @@ export default function ActiveTasks() {
                         })}
 
                         {tasks.length === 0 && !isAdding && (
-                            <tr>
-                                <td colSpan="5" className="px-6 py-12 text-center">
+                            <tr className="block md:table-row">
+                                <td colSpan="5" className="block md:table-cell px-6 py-12 text-center">
                                     <div className="flex flex-col items-center justify-center text-slate-400">
                                         <div className="bg-slate-100 p-3 rounded-full mb-3 shadow-sm">
                                             <Plus className="w-6 h-6 text-slate-400" />
