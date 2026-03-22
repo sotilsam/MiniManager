@@ -46,7 +46,7 @@ function SortableSystem({
                         </button>
                     </div>
                 </td>
-                <td className="px-6 py-3 font-bold text-slate-800 align-middle">
+                <td className="px-2 md:px-6 py-3 font-bold text-slate-800 align-middle">
                     {isEditing ? (
                         <div className="flex items-center gap-2">
                             <input
@@ -66,21 +66,22 @@ function SortableSystem({
                         </div>
                     )}
                 </td>
-                <td className="px-6 py-3 text-right align-middle">
+                <td className="px-2 md:px-6 py-3 text-right align-middle">
                     {isEditing ? (
                         <>
                             <button onClick={() => handleUpdateSystem(system.id)} className="text-green-600 font-medium hover:underline mr-4 cursor-pointer">Save</button>
                             <button onClick={() => setEditingSystemId(null)} className="text-slate-500 font-medium hover:underline cursor-pointer">Cancel</button>
                         </>
                     ) : (
-                        <div className="flex items-center justify-end gap-3 md:gap-4 opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div className="flex items-center justify-end gap-2 md:gap-4 opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity">
                             <button
                                 onClick={() => { setAddingEmployeeTo(system.id); setNewEmployeeName(''); }}
                                 className="text-blue-600 font-medium hover:underline flex items-center gap-1 cursor-pointer"
+                                title="Add Employee"
                             >
-                                <UserPlus className="w-4 h-4" /> Add
+                                <UserPlus className="w-4 h-4" /> <span className="hidden md:inline">Add</span>
                             </button>
-                            <span className="text-slate-300">|</span>
+                            <span className="text-slate-300 hidden md:inline">|</span>
                             <button onClick={() => { setEditingSystemId(system.id); setEditingSystemName(system.systemName); }} className="text-slate-500 hover:text-slate-800 cursor-pointer" title="Edit System"><Edit2 className="w-4 h-4" /></button>
                             <button onClick={() => handleDeleteSystem(system.id, system.systemName)} className="text-slate-500 hover:text-red-600 cursor-pointer" title="Delete System"><Trash2 className="w-4 h-4" /></button>
                         </div>
@@ -92,7 +93,7 @@ function SortableSystem({
             {addingEmployeeTo === system.id && (
                 <tr className="bg-white border-b border-slate-200">
                     <td className="px-2 py-2"></td>
-                    <td className="px-6 py-2 pl-12">
+                    <td className="px-2 md:px-6 py-2 md:pl-12">
                         <input
                             type="text"
                             autoFocus
@@ -103,8 +104,8 @@ function SortableSystem({
                             className="border border-slate-300 rounded p-1.5 focus:border-blue-500 outline-none text-sm w-full max-w-xs bg-white"
                         />
                     </td>
-                    <td className="px-6 py-2 text-right">
-                        <button onClick={() => handleAddEmployee(system.id)} className="text-blue-600 font-medium hover:underline mr-4 cursor-pointer">Add</button>
+                    <td className="px-2 md:px-6 py-2 text-right">
+                        <button onClick={() => handleAddEmployee(system.id)} className="text-blue-600 font-medium hover:underline mr-2 md:mr-4 cursor-pointer">Add</button>
                         <button onClick={() => setAddingEmployeeTo(null)} className="text-slate-500 font-medium hover:underline cursor-pointer">Cancel</button>
                     </td>
                 </tr>
@@ -114,7 +115,7 @@ function SortableSystem({
             {employees.length === 0 ? (
                 <tr className="bg-white border-b border-slate-100">
                     <td className="px-2 py-4"></td>
-                    <td colSpan="2" className="px-6 py-4 pl-12 text-slate-400 italic text-sm">
+                    <td colSpan="2" className="px-2 md:px-6 py-4 md:pl-12 text-slate-400 italic text-sm">
                         No one certified.
                     </td>
                 </tr>
@@ -122,15 +123,15 @@ function SortableSystem({
                 employees.map((emp, idx) => (
                     <tr key={idx} className="bg-white border-b border-slate-100 hover:bg-slate-50 group">
                         <td className="px-2 py-3"></td>
-                        <td className="px-6 py-3 pl-12 text-slate-700 font-medium">
+                        <td className="px-2 md:px-6 py-3 pl-4 md:pl-12 text-slate-700 font-medium whitespace-normal break-words">
                             {emp}
                         </td>
-                        <td className="px-6 py-3 text-right">
+                        <td className="px-2 md:px-6 py-3 text-right">
                             <button
                                 onClick={() => handleRemoveEmployee(system.id, emp)}
-                                className="text-slate-400 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity font-medium text-xs flex items-center justify-end w-full gap-1 cursor-pointer"
+                                className="text-slate-400 hover:text-red-600 opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity font-medium text-xs flex items-center justify-end w-full gap-1 cursor-pointer"
                             >
-                                <X className="w-3.5 h-3.5" /> Remove
+                                <X className="w-3.5 h-3.5" /> <span className="hidden md:inline">Remove</span>
                             </button>
                         </td>
                     </tr>
@@ -305,9 +306,9 @@ export default function SystemCertifications() {
                     <table className="w-full text-sm text-left whitespace-nowrap">
                         <thead className="bg-slate-50 border-b border-slate-200 text-slate-700 uppercase">
                             <tr>
-                                <th scope="col" className="px-2 py-3 font-semibold w-8"></th>
-                                <th scope="col" className="px-6 py-3 font-semibold">System & Personnel</th>
-                                <th scope="col" className="px-6 py-3 font-semibold text-right">Actions</th>
+                                <th scope="col" className="px-0 md:px-2 py-3 font-semibold w-6 md:w-8"></th>
+                                <th scope="col" className="px-2 md:px-6 py-3 font-semibold">System & Personnel</th>
+                                <th scope="col" className="px-2 md:px-6 py-3 font-semibold text-right">Actions</th>
                             </tr>
                         </thead>
 
@@ -316,7 +317,7 @@ export default function SystemCertifications() {
                             <tbody>
                                 <tr className="bg-blue-50 border-b border-slate-200">
                                     <td className="px-2 py-3"></td>
-                                    <td className="px-6 py-3">
+                                    <td className="px-2 md:px-6 py-3">
                                         <div className="flex items-center gap-2">
                                             <Server className="w-4 h-4 text-blue-600" />
                                             <input
@@ -330,8 +331,8 @@ export default function SystemCertifications() {
                                             />
                                         </div>
                                     </td>
-                                    <td className="px-6 py-3 text-right">
-                                        <button onClick={handleAddSystem} className="text-blue-600 hover:underline font-medium mr-4 cursor-pointer">Save</button>
+                                    <td className="px-2 md:px-6 py-3 text-right">
+                                        <button onClick={handleAddSystem} className="text-blue-600 hover:underline font-medium mr-2 md:mr-4 cursor-pointer">Save</button>
                                         <button onClick={() => setIsAddingSystem(false)} className="text-slate-500 hover:underline font-medium cursor-pointer">Cancel</button>
                                     </td>
                                 </tr>
