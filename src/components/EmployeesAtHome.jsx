@@ -161,10 +161,10 @@ export default function EmployeesAtHome() {
                                             {daysAtHome} {daysAtHome === 1 ? 'day' : 'days'}
                                         </span>
                                     </td>
-                                    <td className="px-2 py-3 md:px-4 md:py-4 text-right whitespace-nowrap">
+                                    <td className="px-1 py-3 md:px-4 md:py-4 text-right whitespace-nowrap">
                                         <div className="flex justify-end gap-1 md:gap-2">
-                                            <button onClick={() => startEdit(emp)} className="bg-white text-indigo-600 hover:bg-indigo-50 hover:text-indigo-800 p-2 rounded-md transition-colors shadow-sm ring-1 ring-slate-200" title="Edit"><Edit2 className="w-4 h-4" /></button>
-                                            <button onClick={() => handleDelete(emp.id)} className="bg-white text-red-500 hover:bg-red-50 hover:text-red-700 p-2 rounded-md transition-colors shadow-sm ring-1 ring-slate-200" title="Delete"><Trash2 className="w-4 h-4" /></button>
+                                            <button onClick={() => startEdit(emp)} className="bg-white text-indigo-600 hover:bg-indigo-50 hover:text-indigo-800 p-1.5 md:p-2 rounded-md transition-colors shadow-sm ring-1 ring-slate-200" title="Edit"><Edit2 className="w-4 h-4" /></button>
+                                            <button onClick={() => handleDelete(emp.id)} className="bg-white text-red-500 hover:bg-red-50 hover:text-red-700 p-1.5 md:p-2 rounded-md transition-colors shadow-sm ring-1 ring-slate-200" title="Delete"><Trash2 className="w-4 h-4" /></button>
                                         </div>
                                     </td>
                                 </tr>

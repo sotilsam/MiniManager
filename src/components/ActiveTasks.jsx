@@ -178,10 +178,10 @@ export default function ActiveTasks() {
                                             {daysActive} {daysActive === 1 ? 'day' : 'days'}
                                         </span>
                                     </td>
-                                    <td className="px-2 py-3 md:px-4 md:py-4 text-right whitespace-nowrap">
+                                    <td className="px-1 py-3 md:px-4 md:py-4 text-right whitespace-nowrap">
                                         <div className="flex justify-end gap-1 md:gap-2">
-                                            <button onClick={() => startEdit(task)} className="bg-white/50 text-blue-700 hover:bg-blue-100 hover:text-blue-800 p-2 rounded-md transition-colors shadow-sm" title="Edit"><Edit2 className="w-4 h-4" /></button>
-                                            <button onClick={() => handleDelete(task.id)} className="bg-white/50 text-red-600 hover:bg-red-200 hover:text-red-700 p-2 rounded-md transition-colors shadow-sm" title="Delete"><Trash2 className="w-4 h-4" /></button>
+                                            <button onClick={() => startEdit(task)} className="bg-white/50 text-blue-700 hover:bg-blue-100 hover:text-blue-800 p-1.5 md:p-2 rounded-md transition-colors shadow-sm" title="Edit"><Edit2 className="w-4 h-4" /></button>
+                                            <button onClick={() => handleDelete(task.id)} className="bg-white/50 text-red-600 hover:bg-red-200 hover:text-red-700 p-1.5 md:p-2 rounded-md transition-colors shadow-sm" title="Delete"><Trash2 className="w-4 h-4" /></button>
                                         </div>
                                     </td>
                                 </tr>

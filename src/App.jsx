@@ -10,6 +10,13 @@ function App() {
     const [noteText, setNoteText] = useState('');
     const [saveStatus, setSaveStatus] = useState('');
     const [isLoaded, setIsLoaded] = useState(false);
+    const [copied, setCopied] = useState(false);
+
+    const handleCopy = () => {
+        navigator.clipboard.writeText(noteText);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+    };
 
     useEffect(() => {
         if (!db) return;
@@ -48,6 +55,10 @@ function App() {
     const handleNoteChange = (e) => {
         setNoteText(e.target.value);
         setSaveStatus('Typing...');
+
+        // Auto-expand textarea
+        e.target.style.height = 'auto';
+        e.target.style.height = e.target.scrollHeight + 'px';
     };
 
     return (
@@ -56,7 +67,7 @@ function App() {
             <nav className="bg-white border-b border-slate-200 sticky top-0 z-50">
                 <div className="max-w-[90rem] mx-auto px-4 md:px-8">
                     <div className="flex flex-col md:flex-row items-center justify-between w-full h-auto md:h-16 py-3 md:py-0">
-                        <div className="flex-shrink-0 font-bold text-xl text-[#384910] tracking-tight mb-2 md:mb-0">
+                        <div className="flex-shrink-0 font-bold text-xl text-blue-600 tracking-tight mb-2 md:mb-0">
                             MiniManager
                         </div>
                         <div className="flex items-center justify-center space-x-4 md:space-x-8 h-10 md:h-full w-full md:w-auto">
@@ -128,6 +139,12 @@ function App() {
                                         {saveStatus === 'Saved' && <span className="text-green-500"> saved successfully ✓</span>}
                                         {saveStatus === 'Error saving' && <span className="text-red-500">saving error</span>}
                                     </div>
+                                    <button
+                                        onClick={handleCopy}
+                                        className="text-xs font-semibold px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg transition-colors flex items-center gap-1 active:scale-95"
+                                    >
+                                        {copied ? 'Copied ✓' : 'Copy All'}
+                                    </button>
                                 </div>
                                 <textarea
                                     dir="rtl"
