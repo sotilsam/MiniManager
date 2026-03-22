@@ -108,10 +108,10 @@ export default function EmployeesAtHome() {
                 <table className="w-full text-sm text-left">
                     <thead className="text-xs text-slate-500 uppercase bg-slate-100/80 sticky top-0 border-b border-slate-200 shadow-sm z-10">
                         <tr>
-                            <th className="px-6 py-4 font-semibold tracking-wider">Name</th>
-                            <th className="px-6 py-4 font-semibold tracking-wider">Stay Start Date</th>
-                            <th className="px-6 py-4 font-semibold tracking-wider">Total Days at Home</th>
-                            <th className="px-6 py-4 font-semibold tracking-wider text-right">Actions</th>
+                            <th className="px-3 py-3 md:px-6 md:py-4 font-semibold tracking-wider text-xs md:text-sm">Name</th>
+                            <th className="px-3 py-3 md:px-6 md:py-4 font-semibold tracking-wider text-xs md:text-sm">Stay Start Date</th>
+                            <th className="px-3 py-3 md:px-6 md:py-4 font-semibold tracking-wider text-xs md:text-sm">Total Days at Home</th>
+                            <th className="px-3 py-3 md:px-6 md:py-4 font-semibold tracking-wider text-xs md:text-sm text-right">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -154,15 +154,15 @@ export default function EmployeesAtHome() {
 
                             return (
                                 <tr key={emp.id} className="transition-colors hover:bg-slate-100/50 border-b border-slate-100 last:border-0">
-                                    <td className="px-6 py-4 font-semibold text-slate-800 break-words min-w-[150px]">{emp.name}</td>
-                                    <td className="px-6 py-4 text-slate-600 font-medium whitespace-nowrap">{emp.startDate}</td>
-                                    <td className="px-6 py-4 font-bold whitespace-nowrap">
-                                        <span className="inline-flex items-center justify-center px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs shadow-sm ring-1 ring-inset ring-indigo-200">
+                                    <td className="px-3 py-3 md:px-6 md:py-4 font-semibold text-slate-800 break-words max-w-[100px] md:max-w-none md:min-w-[150px] text-xs md:text-sm">{emp.name}</td>
+                                    <td className="px-3 py-3 md:px-6 md:py-4 text-slate-600 font-medium whitespace-nowrap text-xs md:text-sm">{emp.startDate}</td>
+                                    <td className="px-3 py-3 md:px-6 md:py-4 font-bold whitespace-nowrap">
+                                        <span className="inline-flex items-center justify-center px-2 py-1 md:px-3 md:py-1 rounded-full bg-indigo-50 text-indigo-700 text-[10px] md:text-xs shadow-sm ring-1 ring-inset ring-indigo-200">
                                             {daysAtHome} {daysAtHome === 1 ? 'day' : 'days'}
                                         </span>
                                     </td>
-                                    <td className="px-4 py-4 text-right whitespace-nowrap">
-                                        <div className="flex justify-end gap-2">
+                                    <td className="px-2 py-3 md:px-4 md:py-4 text-right whitespace-nowrap">
+                                        <div className="flex justify-end gap-1 md:gap-2">
                                             <button onClick={() => startEdit(emp)} className="bg-white text-indigo-600 hover:bg-indigo-50 hover:text-indigo-800 p-2 rounded-md transition-colors shadow-sm ring-1 ring-slate-200" title="Edit"><Edit2 className="w-4 h-4" /></button>
                                             <button onClick={() => handleDelete(emp.id)} className="bg-white text-red-500 hover:bg-red-50 hover:text-red-700 p-2 rounded-md transition-colors shadow-sm ring-1 ring-slate-200" title="Delete"><Trash2 className="w-4 h-4" /></button>
                                         </div>

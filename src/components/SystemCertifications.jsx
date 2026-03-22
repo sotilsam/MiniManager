@@ -73,7 +73,7 @@ function SortableSystem({
                             <button onClick={() => setEditingSystemId(null)} className="text-slate-500 font-medium hover:underline cursor-pointer">Cancel</button>
                         </>
                     ) : (
-                        <div className="flex items-center justify-end gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div className="flex items-center justify-end gap-3 md:gap-4 opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity">
                             <button
                                 onClick={() => { setAddingEmployeeTo(system.id); setNewEmployeeName(''); }}
                                 className="text-blue-600 font-medium hover:underline flex items-center gap-1 cursor-pointer"

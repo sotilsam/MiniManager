@@ -119,11 +119,11 @@ export default function ActiveTasks() {
                 <table className="w-full text-sm text-left">
                     <thead className="text-xs text-slate-500 uppercase bg-slate-100/80 sticky top-0 border-b border-slate-200 shadow-sm z-10">
                         <tr>
-                            <th className="px-6 py-4 font-semibold tracking-wider">Name</th>
-                            <th className="px-6 py-4 font-semibold tracking-wider">Arrival Date</th>
-                            <th className="px-6 py-4 font-semibold tracking-wider">Task Date</th>
-                            <th className="px-6 py-4 font-semibold tracking-wider">Days Active</th>
-                            <th className="px-6 py-4 font-semibold tracking-wider text-right">Actions</th>
+                            <th className="px-3 py-3 md:px-6 md:py-4 font-semibold tracking-wider text-xs md:text-sm">Name</th>
+                            <th className="px-3 py-3 md:px-6 md:py-4 font-semibold tracking-wider text-xs md:text-sm">Arrival Date</th>
+                            <th className="px-3 py-3 md:px-6 md:py-4 font-semibold tracking-wider text-xs md:text-sm">Task Date</th>
+                            <th className="px-3 py-3 md:px-6 md:py-4 font-semibold tracking-wider text-xs md:text-sm">Days Active</th>
+                            <th className="px-3 py-3 md:px-6 md:py-4 font-semibold tracking-wider text-xs md:text-sm text-right">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -170,16 +170,16 @@ export default function ActiveTasks() {
 
                             return (
                                 <tr key={task.id} className={`transition-colors ${getRowColor(daysActive)}`}>
-                                    <td className="px-6 py-4 font-semibold break-words min-w-[150px]">{task.name}</td>
-                                    <td className="px-6 py-4 text-slate-700 font-medium whitespace-nowrap">{task.arrivalDate}</td>
-                                    <td className="px-6 py-4 text-slate-700 font-medium whitespace-nowrap">{task.taskDate}</td>
-                                    <td className="px-6 py-4 font-bold whitespace-nowrap">
-                                        <span className="inline-flex items-center justify-center px-2.5 py-1 rounded-full bg-white/50 text-xs shadow-sm">
+                                    <td className="px-3 py-3 md:px-6 md:py-4 font-semibold break-words max-w-[100px] md:max-w-none md:min-w-[150px] text-xs md:text-sm">{task.name}</td>
+                                    <td className="px-3 py-3 md:px-6 md:py-4 text-slate-700 font-medium whitespace-nowrap text-xs md:text-sm">{task.arrivalDate}</td>
+                                    <td className="px-3 py-3 md:px-6 md:py-4 text-slate-700 font-medium whitespace-nowrap text-xs md:text-sm">{task.taskDate}</td>
+                                    <td className="px-3 py-3 md:px-6 md:py-4 font-bold whitespace-nowrap">
+                                        <span className="inline-flex items-center justify-center px-2 py-1 md:px-2.5 md:py-1 rounded-full bg-white/50 text-[10px] md:text-xs shadow-sm">
                                             {daysActive} {daysActive === 1 ? 'day' : 'days'}
                                         </span>
                                     </td>
-                                    <td className="px-4 py-4 text-right whitespace-nowrap">
-                                        <div className="flex justify-end gap-2">
+                                    <td className="px-2 py-3 md:px-4 md:py-4 text-right whitespace-nowrap">
+                                        <div className="flex justify-end gap-1 md:gap-2">
                                             <button onClick={() => startEdit(task)} className="bg-white/50 text-blue-700 hover:bg-blue-100 hover:text-blue-800 p-2 rounded-md transition-colors shadow-sm" title="Edit"><Edit2 className="w-4 h-4" /></button>
                                             <button onClick={() => handleDelete(task.id)} className="bg-white/50 text-red-600 hover:bg-red-200 hover:text-red-700 p-2 rounded-md transition-colors shadow-sm" title="Delete"><Trash2 className="w-4 h-4" /></button>
                                         </div>

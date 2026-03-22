@@ -55,11 +55,11 @@ function App() {
             {/* Top Navigation Bar */}
             <nav className="bg-white border-b border-slate-200 sticky top-0 z-50">
                 <div className="max-w-[90rem] mx-auto px-4 md:px-8">
-                    <div className="flex items-center justify-between w-full h-16">
-                        <div className="flex-shrink-0 font-bold text-xl text-[#384910] tracking-tight">
+                    <div className="flex flex-col md:flex-row items-center justify-between w-full h-auto md:h-16 py-3 md:py-0">
+                        <div className="flex-shrink-0 font-bold text-xl text-[#384910] tracking-tight mb-2 md:mb-0">
                             MiniManager
                         </div>
-                        <div className="flex items-center space-x-8 h-full">
+                        <div className="flex items-center justify-center space-x-4 md:space-x-8 h-10 md:h-full w-full md:w-auto">
                             <button
                                 onClick={() => setCurrentPage('dashboard')}
                                 className={`inline-flex items-center px-1 pt-1 h-full border-b-2 font-semibold text-sm transition-colors ${currentPage === 'dashboard'
